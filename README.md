@@ -3,7 +3,7 @@
 ![Github Actions Status](https://github.com/CinderD/suggest-features)
 
 An extension to adds two buttons to specific cells to show the features suggestions in jupyterlab.
-
+!!! IMPORTANT !!! After download the code, unzip the 'node_modules.zip' file first (before install the extension).
 
 
 ## Requirements
