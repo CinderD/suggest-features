@@ -1,0 +1,147 @@
+<Country = United Kingdom> 	 Country 	 auto
+<Country = United States> 	 Country 	 auto
+<Country = France> 	 Country 	 auto
+<Country = Denmark> 	 Country 	 auto
+<Country = Sweden> 	 Country 	 auto
+<Country = Italy> 	 Country 	 auto
+<Country = Hungary> 	 Country 	 auto
+<Country = Canada> 	 Country 	 auto
+<Country = Switzerland> 	 Country 	 auto
+<Country = Netherlands> 	 Country 	 auto
+<gdpNominalPerCapita> 	 GDP 	 auto
+<gdpNominalPerCapitaRank> 	 GDP 	 auto
+<gdpPpp> 	 GDP 	 auto
+<gdpPppPerCapita> 	 GDP 	 auto
+<gdpPppPerCapitaRank> 	 GDP 	 auto
+<gdpPppYear> 	 GDP 	 auto
+<percentageOfAreaWater> 	 Other 	 auto
+<populationCensus> 	 Population 	 auto
+<populationDensity> 	 Population 	 auto
+<populationDensityKm> 	 Population 	 auto
+<populationDensityRank> 	 Population 	 auto
+<populationDensitySqMi> 	 Population 	 auto
+<populationEstimate> 	 Population 	 auto
+<populationEstimateRank> 	 Population 	 auto
+<populationTotal> 	 Population 	 auto
+<populationTotalRanking> 	 Population 	 auto
+<MODE(countryOlympic.OlympicID) = 0.0> 	 Olympic 	 auto
+<MODE(countryOlympic.OlympicID) = 1.0> 	 Olympic 	 auto
+<MODE(countryOlympic.OlympicID) = 5.0> 	 Olympic 	 auto
+<MODE(countryOlympic.OlympicID) = 10.0> 	 Olympic 	 auto
+<MODE(countryOlympic.OlympicID) = 22.0> 	 Olympic 	 auto
+<MODE(countryOlympic.OlympicID) = 6.0> 	 Olympic 	 auto
+<MODE(countryOlympic.OlympicID) = 3.0> 	 Olympic 	 auto
+<MODE(countryOlympic.OlympicID) = 7.0> 	 Olympic 	 auto
+<MODE(countryOlympic.OlympicID) = 13.0> 	 Olympic 	 auto
+<MODE(countryOlympic.OlympicID) = 11.0> 	 Olympic 	 auto
+<MODE(countryOlympic.Olympic) = Amsterdam 1928-06-30> 	 Olympic 	 auto
+<MODE(countryOlympic.Olympic) = Athens 2004-06-30> 	 Olympic 	 auto
+<MODE(countryOlympic.Olympic) = Atlanta 1996-06-30> 	 Olympic 	 auto
+<MODE(countryOlympic.Olympic) = Antwerp 1920-06-30> 	 Olympic 	 auto
+<MODE(countryOlympic.Olympic) = Helsinki 1952-06-30> 	 Olympic 	 auto
+<MODE(countryOlympic.Olympic) = Athens 1896-06-30> 	 Olympic 	 auto
+<MODE(countryOlympic.Olympic) = Barcelona 1992-06-30> 	 Olympic 	 auto
+<MODE(countryOlympic.Olympic) = Berlin 1936-06-30> 	 Olympic 	 auto
+<MODE(countryOlympic.Olympic) = London 1948-06-30> 	 Olympic 	 auto
+<MODE(countryOlympic.Olympic) = London 1908-06-30> 	 Olympic 	 auto
+<COUNT(medals_won)> 	 Medal 	 auto
+<MODE(medals_won.Event) = 1500M> 	 Event 	 auto
+<MODE(medals_won.Event) = 10000M> 	 Event 	 auto
+<MODE(medals_won.Event) = Hockey> 	 Event 	 auto
+<MODE(medals_won.Event) = épée Individual> 	 Event 	 auto
+<MODE(medals_won.Event) = 1500M Freestyle> 	 Event 	 auto
+<MODE(medals_won.Event) = 51 - 54KG (Bantamweight)> 	 Event 	 auto
+<MODE(medals_won.Event) = 110M Hurdles> 	 Event 	 auto
+<MODE(medals_won.Event) = + 79.38KG (Heavyweight)> 	 Event 	 auto
+<MODE(medals_won.Event) = Sabre Individual> 	 Event 	 auto
+<MODE(medals_won.Event) = Individual Competition> 	 Event 	 auto
+<MODE(medals_won.Medal) = Bronze> 	 Medal 	 human&auto
+<MODE(medals_won.Medal) = Silver> 	 Medal 	 human&auto
+<MODE(medals_won.Medal) = Gold> 	 Medal 	 human&auto
+<ABSOLUTE(COUNT(medals_won))> 	 Medal 	 human&auto
+<ABSOLUTE(ethnicGroupsYear)> 	 Other 	 auto
+<ABSOLUTE(gdpNominalPerCapita)> 	 GDP 	 auto
+<ABSOLUTE(gdpNominalPerCapitaRank)> 	 GDP 	 auto
+<ABSOLUTE(gdpPpp)> 	 GDP 	 auto
+<ABSOLUTE(gdpPppPerCapita)> 	 GDP 	 auto
+<ABSOLUTE(gdpPppPerCapitaRank)> 	 GDP 	 auto
+<ABSOLUTE(gdpPppYear)> 	 GDP 	 auto
+<ABSOLUTE(percentageOfAreaWater)> 	 Other 	 auto
+<ABSOLUTE(populationCensus)> 	 Population 	 auto
+<ABSOLUTE(populationDensity)> 	 Population 	 auto
+<ABSOLUTE(populationDensityKm)> 	 Population 	 auto
+<ABSOLUTE(populationDensityRank)> 	 Population 	 auto
+<ABSOLUTE(populationDensitySqMi)> 	 Population 	 auto
+<ABSOLUTE(populationEstimate)> 	 Population 	 auto
+<ABSOLUTE(populationEstimateRank)> 	 Population 	 auto
+<ABSOLUTE(populationTotal)> 	 Population 	 auto
+<ABSOLUTE(populationTotalRanking)> 	 Population 	 auto
+<PERCENTILE(gdpNominalPerCapita)> 	 GDP 	 auto
+<PERCENTILE(gdpNominalPerCapitaRank)> 	 GDP 	 auto
+<PERCENTILE(gdpPpp)> 	 GDP 	 auto
+<PERCENTILE(gdpPppPerCapita)> 	 GDP 	 auto
+<PERCENTILE(gdpPppPerCapitaRank)> 	 GDP 	 auto
+<PERCENTILE(gdpPppYear)> 	 GDP 	 auto
+<PERCENTILE(percentageOfAreaWater)> 	 Other 	 auto
+<PERCENTILE(populationCensus)> 	 Population 	 auto
+<PERCENTILE(populationDensity)> 	 Population 	 auto
+<PERCENTILE(populationDensityKm)> 	 Population 	 auto
+<PERCENTILE(populationDensityRank)> 	 Population 	 auto
+<PERCENTILE(populationDensitySqMi)> 	 Population 	 auto
+<PERCENTILE(populationEstimate)> 	 Population 	 auto
+<PERCENTILE(populationEstimateRank)> 	 Population 	 auto
+<PERCENTILE(populationTotal)> 	 Population 	 auto
+<PERCENTILE(populationTotalRanking)> 	 Population 	 auto
+<MODE(countryOlympic.MODE(medals_won.Event)) = + 79.38KG (Heavyweight)> 	 Event 	 auto
+<MODE(countryOlympic.MODE(medals_won.Event)) = 110M Hurdles> 	 Event 	 auto
+<MODE(countryOlympic.MODE(medals_won.Event)) = 10000M> 	 Event 	 auto
+<MODE(countryOlympic.MODE(medals_won.Event)) = épée Individual> 	 Event 	 auto
+<MODE(countryOlympic.MODE(medals_won.Event)) = Horizontal Bar> 	 Event 	 auto
+<MODE(countryOlympic.MODE(medals_won.Event)) = 1500M Freestyle> 	 Event 	 auto
+<MODE(countryOlympic.MODE(medals_won.Event)) = 100M> 	 Event 	 auto
+<MODE(countryOlympic.MODE(medals_won.Event)) = 51 - 54KG (Bantamweight)> 	 Event 	 auto
+<MODE(countryOlympic.MODE(medals_won.Event)) = 1500M> 	 Event 	 auto
+<MODE(countryOlympic.MODE(medals_won.Event)) = - 56KG Total (Bantamweight)>" 	 Event 	 auto
+<COUNT(countries_at_plympicgames WHERE medals_won.Medal = Gold)> 	 humanMedal 	 human&auto
+<COUNT(countries_at_plympicgames WHERE medals_won.Medal = Silver)> 	 humanMedal 	 human&auto
+<COUNT(countries_at_plympicgames WHERE medals_won.Medal = Bronze)> 	 humanMedal 	 human&auto
+<MODE(countryOlympic.olympic_games.City) = London> 	 City 	 auto
+<MODE(countryOlympic.olympic_games.City) = Athens> 	 City 	 auto
+<MODE(countryOlympic.olympic_games.City) = Amsterdam> 	 City 	 auto
+<MODE(countryOlympic.olympic_games.City) = Paris> 	 City 	 auto
+<MODE(countryOlympic.olympic_games.City) = Atlanta> 	 City 	 auto
+<MODE(countryOlympic.olympic_games.City) = Los Angeles> 	 City 	 auto
+<MODE(countryOlympic.olympic_games.City) = Antwerp> 	 City 	 auto
+<MODE(countryOlympic.olympic_games.City) = Helsinki> 	 City 	 auto
+<MODE(countryOlympic.olympic_games.City) = Barcelona> 	 City 	 auto
+<MODE(countryOlympic.olympic_games.City) = Berlin> 	 City 	 auto
+<SUM(countryOlympic.NUM_UNIQUE(medals_won.Event))> 	 Event 	 auto
+<SUM(countryOlympic.NUM_UNIQUE(medals_won.Medal))> 	 Medal 	 human&auto
+<MODE(medals_won.countryOlympic.Country) = GBR> 	 Country 	 auto
+<MODE(medals_won.countryOlympic.Country) = USA> 	 Country 	 auto
+<MODE(medals_won.countryOlympic.Country) = FRA> 	 Country 	 auto
+<MODE(medals_won.countryOlympic.Country) = DEN> 	 Country 	 auto
+<MODE(medals_won.countryOlympic.Country) = SWE> 	 Country 	 auto
+<MODE(medals_won.countryOlympic.Country) = ITA> 	 Country 	 auto
+<MODE(medals_won.countryOlympic.Country) = HUN> 	 Country 	 auto
+<MODE(medals_won.countryOlympic.Country) = CAN> 	 Country 	 auto
+<MODE(medals_won.countryOlympic.Country) = SUI> 	 Country 	 auto
+<MODE(medals_won.countryOlympic.Country) = NED> 	 Country 	 auto
+<PERCENTILE(COUNT(medals_won))> 	 Medal 	 auto
+<COUNT(countryOlympic WHERE olympic_games.City = Paris)> 	 City 	 auto
+<COUNT(countryOlympic WHERE olympic_games.City = Athens)> 	 City 	 auto
+<COUNT(countryOlympic WHERE olympic_games.City = London)> 	 City 	 auto
+<COUNT(countryOlympic WHERE olympic_games.City = Los Angeles)> 	 City 	 auto
+<COUNT(countryOlympic WHERE olympic_games.City = Mexico)> 	 City 	 auto
+<COUNT(medals_won WHERE countryOlympic.Olympic = Sydney 2000-06-30)> 	 Olympic 	 auto
+<COUNT(medals_won WHERE countryOlympic.Olympic = Athens 2004-06-30)> 	 Olympic 	 auto
+<COUNT(medals_won WHERE countryOlympic.Olympic = Rio de Janeiro 2016-06-30)> 	 Olympic 	 auto
+<COUNT(medals_won WHERE countryOlympic.Olympic = London 2012-06-30)> 	 Olympic 	 auto
+<COUNT(medals_won WHERE countryOlympic.Olympic = Beijing 2008-06-30)> 	 Olympic 	 auto
+<MEAN(COUNT(medals_won.Medal))> 	 human.Medal 	 human&auto
+<SUM(medaling_athletes.NUM_UNIQUE(athletes.Athelete))> 	 Athelete 	 human
+<COUNT(medaling_athletes WHERE athlete.Gender = Women)> 	 Athelete 	 human
+<COUNT(medaling_athletes WHERE athlete.Gender = Men)> 	 Athelete 	 human
+<COUNT(medals_won.Medal WHERE sports.Sport = Aquatics)> 	 humanEvent 	 human
+<COUNT(medals_won.Medal WHERE sports.Sport = Athletics)> 	 humanEvent 	 human
+<COUNT(medals_won.Medal WHERE sports.Sport = Gymnastics)> 	 humanEvent 	 human
