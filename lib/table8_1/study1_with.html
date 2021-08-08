@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<!-- <link rel="stylesheet" href="css/font-awesome.css"> -->
+<style>
+  table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: 0px auto;
+  }
+  /* Zebra striping */
+
+  tr:nth-of-type(odd) {
+    background: #eee;
+  }
+
+  th {
+    background: steelblue;
+    color: white;
+    font-weight: bold;
+    cursor: s-resize;
+    background-repeat: no-repeat;
+    background-position: 3% center;
+  }
+
+  td,
+  th {
+    padding: 6px;
+    /* border: 1px solid #ccc; */
+    text-align: left;
+  }
+  tr:hover td { background-color: #edf8b1; }
+  th.des:after {
+    content: "\21E3";
+  }
+
+  th.aes:after {
+    content: "\21E1";
+  }
+  .searchBar { 
+  display: inline; 
+  position: relative;
+  left: 1%;
+}
+
+  .searchBar input {
+  position: relative;
+  left: 2%;
+
+  padding: 12px 20px;
+  margin: 5px 0;
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  width: 30%;
+  background-color: #fff;
+}
+.iconGroup{
+  content: "\21E1";
+}
+</style>
+
+<body>
+  <div id="page-wrap">
+  </div>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+
+    var myColorPositive = d3.scaleLinear().domain([0,1]).range(["#caf0f8", "#0077b6"]);
+    var myColorNegative = d3.scaleLinear().domain([-2,0]).range(["#FEE2E2", "#EA8A8A"]);
+    // d3.csv("Features.csv", function(err, data){
+    d3.csv("human_auto20_features.csv", function(err, data){
+      // console.log(data);
+
+    //********* - START TABLE - *********
+    var sortAscending = true;
+    // var searchInput = d3.select("#page-wrap").append("div").attr("class", "searchBar")
+    //                       .append("p").attr("class", "searchBar").text("Search by transformer:");
+    // d3.select(".searchBar")
+    //   .append("input")
+    //   .attr("class", "searchBar")
+    //   .attr("id", "searchInput") // #search
+    //   .attr("type", "text")
+    //   .attr("placeholder", "Search...");
+      
+    var table = d3.select('#page-wrap').append('table');
+    var rows, row_entries;
+    var titles = d3.keys(data[0]);
+    var titles = ["id", "group", "input", "transformer"];
+    // var titles = ["id", "group", "category", "name", "2016","2012","2008","2004","2000","1996",
+    // "1992","1988","1984","1980","1976","1972", "1968",
+    // "1964","1960","1956","1952","1948","1936","1932","1928","1924","1920"] //,"1912","1908"]
+    var headers = table.append('thead').append('tr')
+      .selectAll('th')
+      .data(titles).enter()
+      .append('th')
+      .text(function(d) {
+        return d
+      }).style("font-size",function(d) {
+        if (d == "input" || d == "id" || d == "group" ||d == "transformer") {
+          return "18px";
+        } else {return "15px";}
+      })
+    
+    // var rectButton = headers.append('rect').text(" ");
+    // Sort function //
+      .on('click', function(d) {
+        headers.attr('class', 'header');
+        if (d == "group" || d == "input" || d == "name" || d == "transformer") { //these keys sort alphabetically
+          // sorting alphabetically");
+          if (sortAscending) {
+            rows.sort(function(a, b) {
+              return d3.ascending(a[d], b[d]);
+            });
+            sortAscending = false;
+            this.className = 'aes';
+          } else {
+            rows.sort(function(a, b) {
+              return d3.descending(a[d], b[d]);
+            });
+            sortAscending = true;
+            this.className = 'des';
+          }
+        } else { //all other keys sort numerically including time
+          if (sortAscending) {
+            rows.sort(function(a, b) {
+              return b[d] - a[d];
+            });
+            sortAscending = false;
+            this.className = 'aes';
+          } else {
+            rows.sort(function(a, b) {
+              return a[d] - b[d];
+            });
+            sortAscending = true;
+            this.className = 'des';
+          }
+        }
+      });
+    // End Sort function //
+    
+    rows = table.append('tbody').selectAll('tr')
+      .data(data).enter()
+      .append('tr');
+    rows.selectAll('td')
+      .data(function(d) {
+        return titles.map(function(key, i) {
+          return {
+            'value': d[key],
+            'name': d
+          };
+        });
+      }).enter()
+      .append('td').style("font-size", "15px");
+      // .attr('data-th', function(d) {
+      //   return d.name;
+      // })
+    // .style("background-color", function(d){
+    //     if (parseFloat(d.value) > 0 && parseFloat(d.value) < 1){
+    //       return myColorPositive(d.value);
+    //     } else if (parseFloat(d.value) < 0){
+    //       return myColorNegative(d.value);
+    //     }
+    //   }).style("fill-opacity", function(d){
+    //     if (parseFloat(d.value) > 0 && parseFloat(d.value) < 1){
+    //       return myColorPositive(d.value);
+    //     } else if (parseFloat(d.value) < 0){
+    //       return myColorNegative(d.value);
+    //     }
+    //   });
+    
+    rows.selectAll('td')//.attr('class', 'iconGroup')
+    .text(function(d) {
+          if (parseFloat(d.value) > 0 && parseFloat(d.value) < 1){
+            return parseFloat(d.value).toFixed(2);
+          } else if (parseFloat(d.value) < 0){
+            return parseFloat(d.value).toFixed(2);
+          } 
+          else if (d.value == 'auto' | d.value == 'human' | d.value == 'human&auto'){
+            // return d.value;
+          }
+          else {
+            return d.value;
+          }
+        }).append("i").attr("class", function(d){
+          if (d.value == 'auto') return "fas fa-robot";
+          else if (d.value == 'human') return "fas fa-user";
+          else if (d.value == 'human&auto') return "fas fa-user";
+        }).append("i").attr("class", function(d){
+          if (d.value == 'human&auto') return "fas fa-robot";
+        });
+    /**  search functionality **/
+    
+    // d3.select("#searchInput").on("keyup", function() { // filter according to key pressed 
+
+    // var searched_data = data,
+    //     text = this.value.trim();
+    // // console.log(data);
+    // var searchResults = searched_data.map(function(r) {
+    //   var regex = new RegExp("^" + text + ".*", "i");
+    //   if (regex.test(r.name)) { // if there are any results
+    //     return regex.exec(r.name)[0]; // return them to searchResults
+    //   } 
+    // })
+    
+    // // filter blank entries from searchResults
+    // searchResults = searchResults.filter(function(r){ 
+    //   return r != undefined;
+    // })
+
+    // // filter dataset with searchResults
+    // searched_data = searchResults.map(function(r) {
+    //   return data.filter(function(p) {
+
+    //     return p.name.indexOf(r) != -1;
+    //   })
+    // })
+    // // console.log(searchResults);
+    // //     // flatten array 
+    // searched_data = [].concat.apply([], searched_data)
+    // // console.log(searched_data);
+
+    // // data bind with new data
+    // rows = table.select("tbody").selectAll("tr")
+    //   .data(searched_data, function(d){ return d.id; })
+    
+    // //     // enter the rows
+    //     rows.enter()
+    //       .append("tr");
+
+    // //     // enter td's in each row
+    //     row_entries = rows.selectAll("td")
+    //     .data(function(d) {
+    //         return titles.map(function(key, i) {
+    //           return {
+    //             'value': d[key],
+    //             'name': d
+    //           };
+    //         });
+    //       }).enter()
+    //         .append("td").style("font-size", "15px")
+    //         .text(function(d) {
+    //           if (parseFloat(d.value) > 0 && parseFloat(d.value) < 1){
+    //             return parseFloat(d.value).toFixed(2);
+    //           } else if (parseFloat(d.value) < 0){
+    //             return parseFloat(d.value).toFixed(2);
+    //           }else{
+    //             return d.value;
+    //           }
+    //         })
+    //         .style("background-color", function(d){
+    //           if (parseFloat(d.value) > 0 && parseFloat(d.value) < 1){
+    //             return myColorPositive(d.value);
+    //           } else if (parseFloat(d.value) < 0){
+    //             return myColorNegative(d.value);
+    //           }
+    //         })
+    //         .style("fill-opacity", function(d){
+    //           if (parseFloat(d.value) > 0 && parseFloat(d.value) < 1){
+    //             return myColorPositive(d.value);
+    //           } else if (parseFloat(d.value) < 0){
+    //             return myColorNegative(d.value);
+    //           }
+    //         });
+    //     // exit
+    //     rows.exit().remove();
+    // });
+    /**  end search functionality **/
+    //********* - END TABLE - *********
+
+
+    });
+    
+  </script>
+  <script src="https://kit.fontawesome.com/4421af3ebc.js" crossorigin="anonymous"></script>
+</body>
