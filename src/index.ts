@@ -35,7 +35,6 @@ const extension: JupyterFrontEndPlugin<void> = {
 
         let currentCell: Cell = null;
         let currentCellPlayButton: CellPlayButton = null;
-        // let currentCellPlayButton_2: CellPlayButton = null;
 
         nbTrack.activeCellChanged.connect(() => {
 
@@ -54,26 +53,19 @@ const extension: JupyterFrontEndPlugin<void> = {
             });
           }
 
-
           const cell: Cell = notebook.activeCell;
           const newButton: CellPlayButton = new CellPlayButton(
-              cell, notebookPanel.sessionContext);
-          // const newButton_2: CellPlayButton = new CellPlayButton(
-          //     cell, notebookPanel.sessionContext);
+              cell);
+
+          // regular expression to check if users add '#check features' command in the cell's input area
+          // if so, add our button & corresponding visualzation to this particular cell
           var generalReg = /#check features/;
           if (generalReg.test(cell.inputArea.node.innerText)){
             (cell.layout as PanelLayout).addWidget(newButton);
           }
-          // (cell.layout as PanelLayout).addWidget(newButton_2);
-        //   const newButton_2: CellPlayButton = new CellPlayButton(
-        //     cell, notebookPanel.sessionContext);
-        // (cell.layout as PanelLayout).addWidget(newButton_1);
 
-          // Set the current cell and button for future
-          // reference
           currentCell = cell;
           currentCellPlayButton = newButton;
-          // currentCellPlayButton_2 = newButton;
         });
 
       });

@@ -1,5 +1,5 @@
 """
-suggest_features setup
+suggesting-features setup
 """
 import json
 from pathlib import Path
@@ -9,7 +9,7 @@ import setuptools
 HERE = Path(__file__).parent.resolve()
 
 # The name of the project
-name = "suggest_features"
+name = "suggesting-features"
 
 lab_path = (HERE / name / "labextension")
 
