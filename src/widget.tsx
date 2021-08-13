@@ -6,11 +6,15 @@ import { stopIcon, LabIcon } from '@jupyterlab/ui-components';
 
 import React from 'react';
 
-
+/// <reference path="node.d.ts"/>
 // import the button logo & html visualization as modules
 import buttonSVG from '../style/table-grid.svg';
+// import * as URL from "url";
+// let Mytable = URL.parse("https://github.com/CinderD/suggest-features/blob/main/style/study2.html");
+// import Mytable from 'https://raw.githubusercontent.com/CinderD/suggest-features/main/style/study2.html';
+// var Mytable = require("../style/study2.html");
 import Mytable from '../style/study2.html';
-
+// var  Mytable = require ("../style/study2.html");
 
 var myButton = document.createElement('style');
 myButton.type = 'widget/css';
@@ -71,18 +75,22 @@ interface ICodeCellButtonComponent {
   // session: ISessionContext; // represent the session of a cell
 }
 
+// definition of iframe
+const Mynode = document.createElement("div");
+var ifra_1 = document.createElement('iframe');
+ifra_1.id = 'Myifra_1';
+var count = 0;
+
 const CodeCellButtonComponent = ({
   cell,
   // session,
 }: ICodeCellButtonComponent): JSX.Element => {
   
 // to control the hide & appear of iframe window
-  var count = 0;
+  
   cell.outputArea.hide()
 // below is the part to create the iframe in output area
-  const Mynode = document.createElement("div");
-  var ifra_1 = document.createElement('iframe');
-  ifra_1.id = 'Myifra_1';
+
   cell.outputArea.node.append(Mynode);
 
 // function to hide the iframe window
