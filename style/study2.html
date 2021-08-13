@@ -143,15 +143,17 @@ input[type=checkbox]:checked:after {
 
 <body>
   <div>
-    <button type="button" class="selectButton" id="allButton">All</button>
-    <button type="button" class="selectButton" id="humanButton">Human Only</button>
-    <button type="button" class="selectButton" id="autoButton">Automation Only</button>
-    <button type="button" class="selectButton" id="overlapButton">Overlapped Features</button>
+
     <button type="button" class="GenIDButton">Submit Selection</button>
     <p class="numberList" style="display:none">null</p>
   </div>
   <br>
-  <div id="page-wrap"></div>
+  
+  <div id="page-wrap">    <button type="button" class="selectButton" id="allButton">All</button>
+    <button type="button" class="selectButton" id="humanButton">Human Only</button>
+    <button type="button" class="selectButton" id="autoButton">Automation Only</button>
+    <button type="button" class="selectButton" id="overlapButton">Overlapped Features</button></div>
+  
   
 
   <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -159,7 +161,7 @@ input[type=checkbox]:checked:after {
     var myColorPositive = d3.scaleLinear().domain([0,1]).range(["#caf0f8", "#0077b6"]);
     var myColorNegative = d3.scaleLinear().domain([-2,0]).range(["#FEE2E2", "#EA8A8A"]);
     // d3.csv("Features.csv", function(err, data){
-    d3.csv("https://raw.githubusercontent.com/CinderD/suggest-features/main/source/natural_new.csv", function(err, data){
+    d3.csv("natural_new.csv", function(err, data){
       // console.log(data);
     
     // var submitButton = d3.select("#page-wrap").append("button").attr("class", "submitButton").attr("height", "100px");
@@ -340,7 +342,7 @@ input[type=checkbox]:checked:after {
       })
       var showList = d3.select(".numberList")
         showList.style("display", "block");
-        showList.text("copy these number: " + numList.toString());
+        showList.text("Please copy this to the cell: feature_id = [" + numList.toString()+ "]");
       // console.log(numList);
     }
     //output selected ID
