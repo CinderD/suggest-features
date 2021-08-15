@@ -206,9 +206,15 @@ def human_features():
                                  'MIN(atheletes.Age)', 'MAX(atheletes.Age)', 'MEAN(atheletes.Age)', 
                                  'COUNT(medaling_athletes WHERE athlete.Gender = Women)', 
                                  'RATIO(COUNT(athletes WHERE Gender = Men), COUNT(athletes WHERE Gender = Women))', 
-                                 'RATIO(COUNT(athletes WHERE Gender = Women), COUNT(athletes.Athelete))']
+                                 'RATIO(COUNT(athletes WHERE Gender = Women), COUNT(athletes.Athelete))',
+                                'SUM(medaling_athletes.NUM_UNIQUE(athletes.Athelete))',
+                                'COUNT(medaling_athletes WHERE athlete.Gender = Men)'
+                                ]
     
-    select_human_features = [historic_Gymnastics_modal_num, athlete_age_min, athlete_age_max, athlete_age_mean, women_athlete_num, man_woman_ratio, woman_ratio]
+    select_human_features = [historic_Gymnastics_modal_num, 
+                             athlete_age_min, athlete_age_max, athlete_age_mean, 
+                             women_athlete_num, man_woman_ratio, woman_ratio, 
+                             athlete_num, men_athlete_num]
     
     return select_human_feature_names, select_human_features
 
