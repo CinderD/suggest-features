@@ -87,9 +87,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/// <reference path="node.d.ts"/>
 // import the button logo & html visualization as modules
 
+// import * as URL from "url";
+// let Mytable = URL.parse("https://github.com/CinderD/suggest-features/blob/main/style/study2.html");
+// import Mytable from 'https://raw.githubusercontent.com/CinderD/suggest-features/main/style/study2.html';
+// var Mytable = require("../style/study2.html");
 
+// var  Mytable = require ("../style/study2.html");
 var myButton = document.createElement('style');
 myButton.type = 'widget/css';
 myButton.innerHTML = '.myButton { color: #F00; }';
@@ -100,14 +106,15 @@ const selfLabIcon = new _jupyterlab_ui_components__WEBPACK_IMPORTED_MODULE_1__.L
 });
 const Button = ({ icon, onClick, }) => (react__WEBPACK_IMPORTED_MODULE_2___default().createElement("button", { type: "button", onClick: () => onClick(), className: "cellButton" },
     react__WEBPACK_IMPORTED_MODULE_2___default().createElement(_jupyterlab_ui_components__WEBPACK_IMPORTED_MODULE_1__.LabIcon.resolveReact, { icon: selfLabIcon, className: "cellButton-icon", tag: "span", width: "20px", height: "20px" })));
+// definition of iframe
+const Mynode = document.createElement("div");
+var ifra_1 = document.createElement('iframe');
+ifra_1.id = 'Myifra_1';
+var count = 0;
 const CodeCellButtonComponent = ({ cell, }) => {
     // to control the hide & appear of iframe window
-    var count = 0;
     cell.outputArea.hide();
     // below is the part to create the iframe in output area
-    const Mynode = document.createElement("div");
-    var ifra_1 = document.createElement('iframe');
-    ifra_1.id = 'Myifra_1';
     cell.outputArea.node.append(Mynode);
     // function to hide the iframe window
     const clearCell = async () => {
@@ -163,7 +170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "68f3cc77c12ca6366a4f0ceea6931bda.html");
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "9848d36c5d61e9a069c87a3350f3924a.html");
 
 /***/ }),
 
@@ -182,4 +189,4 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 }]);
-//# sourceMappingURL=lib_index_js.523163dc2642f34d5981.js.map
+//# sourceMappingURL=lib_index_js.cff84961b59d8000de74.js.map

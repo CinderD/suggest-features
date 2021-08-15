@@ -70,7 +70,7 @@
     "extension": true,
     "outputDir": "suggest_features/labextension",
     "_build": {
-      "load": "static/remoteEntry.fc1111217f5f31088a33.js",
+      "load": "static/remoteEntry.cdfe95e5836221dc9b94.js",
       "extension": "./extension",
       "style": "./style"
     }

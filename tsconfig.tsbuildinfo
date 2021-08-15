@@ -2382,7 +2382,7 @@
         "affectsGlobalScope": false
       },
       "./src/widget.tsx": {
-        "version": "9b4b0f7374a823f6635ffb1326029bf905ebfcee294ebd12d2a0ea34bdaf9144",
+        "version": "f24a71a8e0429eaa60f4bf0812f9bf2f229edd95801ef889bf3918a029be46ee",
         "signature": "dbcfaa9a0ae742635bc33aba27356bb7031a100c1c5644f09484debfabc7f6d3",
         "affectsGlobalScope": false
       },

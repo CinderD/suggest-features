@@ -22,8 +22,8 @@ suggest_features/labextension/package.json
 suggest_features/labextension/static/68f3cc77c12ca6366a4f0ceea6931bda.html
 suggest_features/labextension/static/lib_index_js.523163dc2642f34d5981.js
 suggest_features/labextension/static/lib_index_js.523163dc2642f34d5981.js.map
-suggest_features/labextension/static/remoteEntry.c92aea4b216aa7f76bc6.js
-suggest_features/labextension/static/remoteEntry.c92aea4b216aa7f76bc6.js.map
+suggest_features/labextension/static/remoteEntry.fc1111217f5f31088a33.js
+suggest_features/labextension/static/remoteEntry.fc1111217f5f31088a33.js.map
 suggest_features/labextension/static/style.js
 suggest_features/labextension/static/style_index_js.895a8943cd48148d2379.js
 suggest_features/labextension/static/style_index_js.895a8943cd48148d2379.js.map
