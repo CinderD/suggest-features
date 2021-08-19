@@ -163,7 +163,8 @@ input[type=checkbox]:checked:after {
     // d3.csv("Features.csv", function(err, data){
     d3.csv("https://raw.githubusercontent.com/CinderD/suggest-features/main/source/natural_814.csv", function(err, data){
       // console.log(data);
-    
+    var checkStatus = [];
+    for(var n = 0; n < 100; n++) checkStatus[n] = false;
     // var submitButton = d3.select("#page-wrap").append("button").attr("class", "submitButton").attr("height", "100px");
     // submitButton.value = "Submit";
     //********* - START TABLE - *********
@@ -181,8 +182,8 @@ input[type=checkbox]:checked:after {
       
     var table = d3.select('#page-wrap').append('table');
     var rows, row_entries;
-
-    var titles = ["Checkbox", "ID", "Creator", "Feature", "Input", "Description", "Score"];
+    
+    var titles = ["Checkbox", "ID", "Creator", "Feature", "Input", "Description"];
     // var titles = ["id", "group", "category", "name", "2016","2012","2008","2004","2000","1996",
     // "1992","1988","1984","1980","1976","1972", "1968",
     // "1964","1960","1956","1952","1948","1936","1932","1928","1924","1920"] //,"1912","1908"]
@@ -196,6 +197,7 @@ input[type=checkbox]:checked:after {
       }).style("font-size","16px")
       .each(function(d, i){
         if (d == "Checkbox") {
+          // add checkbox for all
           var checkbox = d3.select(this).append('input');
           checkbox.attr("type", "checkbox").attr("class", "CheckAll");
           checkbox.on("change", updateAll);
@@ -222,7 +224,8 @@ input[type=checkbox]:checked:after {
             sortAscending = true;
             this.className = 'des';
           }
-        } else if (d == "Score" || "ID") { //all other keys sort numerically including time
+        // } else if (d == "Score" || "ID") { //all other keys sort numerically including time
+        } else if (d == "ID") {
           if (sortAscending) {
             rows.sort(function(a, b) {
               return b[d] - a[d];
@@ -310,10 +313,52 @@ input[type=checkbox]:checked:after {
             d3.select(this).append('text').text(" or ");
             d3.select(this).append('i').attr("class", "fas fa-robot");
           } else if (d.value == "check"){
+            // add checkboxs for each row
             d3.select(this).append('input').attr("type","checkbox").attr("class","checkboxID").attr("id", "box-" + d.name['ID']);
             // console.log(d, d.name["ID"]);
           }
         });
+
+     // human features // 
+    var showHuman = data.filter(function(r) { 
+        // console.log(r.Creator);
+        if (r.Creator !== "auto" && r.Creator !== "human / auto"){
+          return r;
+        }
+      });
+    
+    showHuman = [].concat.apply([], showHuman);
+    var humanids = [];
+    showHuman.forEach(function(ele, ind){
+      humanids.push(ele.ID);
+    });
+    // human features //
+    // auto features //
+    var showAuto = data.filter(function(r) { 
+          // console.log(r.creator);
+          if (r.Creator !== "human" && r.Creator !== "human / auto"){
+            return r;
+          }
+        });
+    var autoids = [];
+      showAuto.forEach(function(ele, ind){
+        // console.log(ele.ID);
+        autoids.push(ele.ID);
+      });
+    // auto features //
+    // overlap features //
+    var showOverlap = data.filter(function(r) { 
+          // console.log(r.Creator);
+          if (r.Creator !== "auto" && r.Creator !== "human"){
+            return r;
+          }
+        });
+    var overlapids = [];
+      showOverlap.forEach(function(ele, ind){
+        // console.log(ele.ID);
+        overlapids.push(ele.ID);
+      });
+    // overlap features //
 
     // check All function
     function updateAll() {
@@ -323,11 +368,25 @@ input[type=checkbox]:checked:after {
           d3.selectAll('.checkboxID').property("checked", false);
 				}	
     }  
+    function updateCheckStatus(dataLen, idList) {
+      // console.log("update:", dataLen, idList);
+      
+      for (i=0; i<dataLen; i++){
+        if (d3.select('#box-' + idList[i]).property("checked")){
+          // console.log('checkbox changed');
+          checkStatus[idList[i]] = d3.select('#box-' + idList[i]).property("checked");
+        } 
+      }
+      // console.log(checkStatus);
+    }
+
     // end check all 
     //output selected ID
     d3.select(".GenIDButton").on('click', outputNum);
     var numList = [];
+    var statusTrueIds = [];
     function outputNum() {
+      //select current show rows
       var boxes = d3.selectAll('.checkboxID');
       // console.log(boxes["_groups"]["0"]);
       var allboxes = boxes["_groups"]["0"]; 
@@ -337,32 +396,36 @@ input[type=checkbox]:checked:after {
           // console.log(i);
           tmp_id = d.id.split('box-')[1];
           // console.log(tmp_id)
-          numList.push(tmp_id);
+          numList.push(parseInt(tmp_id));
         } 
       })
+      // check status
+      
+      checkStatus.forEach(function(ele, ind){
+        if (ele == true) statusTrueIds.push(ind);
+      });
+      // console.log("show id list", numList);
+      // console.log("status id list", statusTrueIds);
+      let arr = numList.concat(statusTrueIds);  //合并数组
+      let arrNew = new Set(arr); //通过set集合去重
+      // console.log(arrNew);
+      var finalList = Array.from(arrNew);
       var showList = d3.select(".numberList")
         showList.style("display", "block");
-        showList.text("Please copy this to the cell: feature_id = [" + numList.toString()+ "]");
+        showList.text("Please copy this to the cell: feature_id = [" + finalList.toString()+ "]");
       // console.log(numList);
     }
     //output selected ID
     
     // human button check
     d3.select("#humanButton").on("click", function(){
-      var showHuman = data.filter(function(r) { 
-          console.log(r.Creator);
-          if (r.Creator !== "auto" && r.Creator !== "human / auto"){
-            return r;
-          }
-        });
       
-      showHuman = [].concat.apply([], showHuman);
-      // console.log(showHuman);
-      
+
       rows = table.select("tbody").selectAll("tr")
         .data(showHuman, function(d){ return d.Feature;});
       
-      // console.log("human rows: ", rows);
+      
+      // console.log(showHuman);
       rows.enter().append("tr").selectAll("td")
         .data(function(d) {
             return titles.map(function(key, i) {
@@ -400,10 +463,35 @@ input[type=checkbox]:checked:after {
           if (d.value == 'human'){
             d3.select(this).append('i').attr("class", "fas fa-user");
           } else if (d.value == "check"){
-            d3.select(this).append('input').attr("type","checkbox").attr("class","checkboxID").attr("id", "box-" + d.name['ID']);
+            d3.select(this).append('input').attr("type","checkbox")
+            // add status check
+              .attr("class","checkboxID").attr("id", "box-" + d.name['ID'])
+              .property("checked", checkStatus[d.name['ID']]);
+              // .on("change", updateCheckStatus(Object.keys(showHuman).length, humanids));
+            
             // console.log(d, d.name["ID"]);
           }
         });
+      
+      d3.selectAll(".checkboxID").on("change", function(d){
+          console.log(d.name['ID'], "checked changed");
+          updateCheckStatus(Object.keys(showHuman).length, humanids);
+      });
+      d3.select(".CheckAll").on("change", function(d){
+        updateAll();
+        updateCheckStatus(Object.keys(showHuman).length, humanids);
+      });
+      // console.log("human:", checkStatus);
+      // rows.each(function(d, ind){
+      //   if (d.value == "check"){
+      //     d3.select(this).property("checked", checkStatus[d.name['ID']])
+      //   }
+      // });
+
+      if(d3.select(".CheckAll").property("checked", true)){
+        // console.log("yes checked");
+        d3.selectAll('.CheckAll').property("checked", false);
+			}
       
       // console.log("human entries: ", row_entries);
       // exit
@@ -413,17 +501,13 @@ input[type=checkbox]:checked:after {
 
     //auto button check
     d3.select("#autoButton").on("click", function(){
-      var showAuto = data.filter(function(r) { 
-          // console.log(r.creator);
-          if (r.Creator !== "human" && r.Creator !== "human / auto"){
-            return r;
-          }
-        });
       
+    
       showAuto = [].concat.apply([], showAuto);
       // console.log(showAuto);
       rows = table.select("tbody").selectAll("tr")
         .data(showAuto, function(d){ return d.Feature;});
+      
       
       // console.log("Auto rows: ", rows);
       rows.enter().append("tr").selectAll("td")
@@ -461,11 +545,28 @@ input[type=checkbox]:checked:after {
           if  (d.value == 'auto'){
             d3.select(this).append('i').attr("class", "fas fa-robot");
           } else if (d.value == "check"){
-            d3.select(this).append('input').attr("type","checkbox").attr("class","checkboxID").attr("id", "box-" + d.name['ID']);
+            d3.select(this).append('input').attr("type","checkbox").attr("class","checkboxID")
+            .attr("id", "box-" + d.name['ID']).property("checked", checkStatus[d.name['ID']]);
             // console.log(d, d.name["ID"]);
           }
         });
+
+      d3.selectAll(".checkboxID").on("change", function(d){
+          console.log(d.name['ID'], "checked changed");
+          updateCheckStatus(Object.keys(showAuto).length, autoids);
+      });
+
+      d3.select(".CheckAll").on("change", function(d){
+        updateAll();
+        updateCheckStatus(Object.keys(showAuto).length, autoids);
+      });
+
+      // console.log("auto:", checkStatus);
       // console.log("auto entries: ", row_entries);
+      if(d3.select(".CheckAll").property("checked", true)){
+        d3.selectAll('.CheckAll').property("checked", false);
+			}
+      // updateRowCheckbox();
       // exit
       rows.exit().remove();
     });
@@ -473,13 +574,6 @@ input[type=checkbox]:checked:after {
 
     // overlapped button
     d3.select("#overlapButton").on("click", function(){
-      var showOverlap = data.filter(function(r) { 
-          // console.log(r.Creator);
-          if (r.Creator !== "auto" && r.Creator !== "human"){
-            return r;
-          }
-        });
-      
       showOverlap = [].concat.apply([], showOverlap);
       // console.log(showHuman);
       
@@ -526,11 +620,24 @@ input[type=checkbox]:checked:after {
             d3.select(this).append('text').text(" or ");
             d3.select(this).append('i').attr("class", "fas fa-robot");
           } else if (d.value == "check"){
-            d3.select(this).append('input').attr("type","checkbox").attr("class","checkboxID").attr("id", "box-" + d.name['ID']);
+            d3.select(this).append('input').attr("type","checkbox").attr("class","checkboxID")
+            .attr("id", "box-" + d.name['ID']).property("checked", checkStatus[d.name['ID']]);
             // console.log(d, d.name["ID"]);
           }
         });
-      
+
+      d3.selectAll(".checkboxID").on("change", function(d){
+          console.log(d.name['ID'], "checked changed");
+          updateCheckStatus(Object.keys(showOverlap).length, overlapids);
+      });
+
+      d3.select(".CheckAll").on("change", function(d){
+        updateAll();
+        updateCheckStatus(Object.keys(showOverlap).length, overlapids);
+      });
+
+      // console.log("overlap:", checkStatus);
+      // updateRowCheckbox();
       // console.log("human entries: ", row_entries);
       // exit
       rows.exit().remove();
@@ -545,7 +652,9 @@ input[type=checkbox]:checked:after {
       
       showAll = [].concat.apply([], showAll);
       // console.log(showHuman);
-      
+
+
+      updateCheckStatus();
       rows = table.select("tbody").selectAll("tr")
         .data(showAll, function(d){ return d.Feature;});
       
@@ -593,11 +702,15 @@ input[type=checkbox]:checked:after {
             d3.select(this).append('text').text(" or ");
             d3.select(this).append('i').attr("class", "fas fa-robot");
           } else if (d.value == "check"){
-            d3.select(this).append('input').attr("type","checkbox").attr("class","checkboxID").attr("id", "box-" + d.name['ID']);
+            d3.select(this).append('input').attr("type","checkbox")
+            .attr("class","checkboxID").attr("id", "box-" + d.name['ID'])
+            .property("checked", checkStatus[d.name['ID']]);
             // console.log(d, d.name["ID"]);
           }
         });
-      
+        if(d3.select(".CheckAll").property("checked", true)){
+          d3.selectAll('.CheckAll').property("checked", false);
+			}
       // console.log("human entries: ", row_entries);
       // exit
       rows.exit().remove();
