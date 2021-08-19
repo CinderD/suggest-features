@@ -360,6 +360,17 @@ input[type=checkbox]:checked:after {
       });
     // overlap features //
 
+     // allfeatures //
+    var showAll = data.filter(function(r) { 
+          // console.log(r.Creator);
+            return r != undefined;
+        });
+    var allids = [];
+    showAll.forEach(function(ele, ind){
+        // console.log(ele.ID);
+        allids.push(ele.ID);
+      });
+     // allfeatures //
     // check All function
     function updateAll() {
       if(d3.select(".CheckAll").property("checked")){
@@ -645,10 +656,7 @@ input[type=checkbox]:checked:after {
 
     //show All features button
     d3.select("#allButton").on("click", function(){
-      var showAll = data.filter(function(r) { 
-          // console.log(r.Creator);
-            return r != undefined;
-        });
+      
       
       showAll = [].concat.apply([], showAll);
       // console.log(showHuman);
@@ -708,10 +716,18 @@ input[type=checkbox]:checked:after {
             // console.log(d, d.name["ID"]);
           }
         });
-        if(d3.select(".CheckAll").property("checked", true)){
+
+
+      d3.selectAll(".checkboxID").on("change", function(d){
+          console.log(d.name['ID'], "checked changed");
+          updateCheckStatus(Object.keys(showAll).length, allids);
+      });
+
+
+      // console.log("human entries: ", row_entries);
+      if(d3.select(".CheckAll").property("checked", true)){
           d3.selectAll('.CheckAll').property("checked", false);
 			}
-      // console.log("human entries: ", row_entries);
       // exit
       rows.exit().remove();
     });
